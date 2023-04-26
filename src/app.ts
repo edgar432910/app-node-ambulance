@@ -1,24 +1,37 @@
 import express from "express";
-import routerUser from "./user/adapter/user.route";
+import routerUser from "@user/adapter/user.route";
+import routerDriver from "@driver/adapter/driver.route";
+import routerMedic from "@medic/adapter/medic.route";
+import routerRole from "@role/adapter/role.route";
+import routerAuth from "@auth/adapter/auth.route";
+import ErrorHandle from "@shared/helpers/errors.helper";
 import { Application } from "express";
 
 class App {
   expressApp: Application;
   constructor() {
     this.expressApp = express();
+    this.mountMiddlewares();
     this.mountRoutes();
     this.mountErros();
   }
   mountRoutes() {
     this.expressApp.use("/users", routerUser);
+    this.expressApp.use("/drivers", routerDriver);
+    this.expressApp.use("/medics", routerMedic);
+    this.expressApp.use("/roles", routerRole);
+    this.expressApp.use("/auth", routerAuth);
+
   }
   mountErros() {
-    this.expressApp.use("**", (request: any, response: any) => {
-      console.log(`FF`);
-      response.writeHead(404, { "content-type": "text/plain" });
-      response.write("Not Found");
-      response.end();
-    });
+    // this.expressApp.use("**", ErrorHandle.notFound);
+    this.expressApp.use(ErrorHandle.notFound);
+    this.expressApp.use(ErrorHandle.generic);
+  }
+  mountMiddlewares() {
+    this.expressApp.use(express.urlencoded({ extended: true }));
+    // middleware se llama json, se le asign a requestbody
+    this.expressApp.use(express.json());
   }
 }
 export default new App().expressApp;

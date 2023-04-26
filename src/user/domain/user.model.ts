@@ -1,4 +1,12 @@
+import { RoleModel } from "@role/domain/role.model";
+
 export interface UserModel {
+  id:number;
   name: string;
-  age: number;
+  lastname: string;
+  email: string;
+  password: string;
+  refreshToken: string;
+  dateExpirationRefreshToken:Date;
+  roles: RoleModel[] | string[];
 }

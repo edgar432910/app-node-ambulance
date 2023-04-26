@@ -1,16 +1,31 @@
+import { DatabaseBootstrap } from "@bootstrap/database.boostrap";
 import app from "./app";
 
-import ServerBootstrap from "./bootstrap/server.bootstrap";
+import ServerBootstrap from "@bootstrap/server.bootstrap";
+import RedisBootstrap from "@bootstrap/redis.boostrap";
 
-const serverBootstrap = new ServerBootstrap(app);
+
 
 (async () => {
+  const serverBootstrap = new ServerBootstrap(app);
+  const databaseBoostrap = new DatabaseBootstrap();
+  const redisBootstrap = new RedisBootstrap();
   try {
-    await serverBootstrap.initialize();
+    const listPromises = [
+      serverBootstrap.initialize(),
+      databaseBoostrap.initialize(),
+      redisBootstrap.initialize(),
+    ];
+    await Promise.all(listPromises);
+    console.log('Database is running');
+
   } catch (err) {
     console.log(err);
     // process exit 1 error de funcionamiento, reinicie el node
     // process exit 0 se ejecuto correctamente
+    databaseBoostrap.close();
+    serverBootstrap.close();
+    redisBootstrap.close();
     process.exit(1);
   }
 })();
