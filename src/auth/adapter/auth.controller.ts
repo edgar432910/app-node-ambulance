@@ -17,12 +17,13 @@ export default class AuthController {
             password: body.password
         }
         const result = await this.useCase.login(user);
-        if(result) res.json(result);
-        res.status(401).send('USER NOT FOUND')
+        if(result) {res.json(result)}
+        else{res.status(401).send('USER NOT FOUND')}
+        
     }
     async getNewAccessToken(req: Request, res: Response) {
-        const user: Partial<UserModel> = req.params;
-        const result:Result<TokensModel> = await this.useCase.getNewAccessToken(user);
+        const {refreshToken} = req.params;
+        const result:Result<TokensModel> = await this.useCase.getNewAccessToken(refreshToken);
         if(result) return res.json(result);
         return res.status(404).send('User not found');
 

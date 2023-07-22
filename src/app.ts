@@ -6,18 +6,26 @@ import routerRole from "@role/adapter/role.route";
 import routerAuth from "@auth/adapter/auth.route";
 import ErrorHandle from "@shared/helpers/errors.helper";
 import { Application } from "express";
+import multer from "multer"
+import { AuthenticationGuard } from "@shared/guards/authentication.guard";
 
 class App {
   expressApp: Application;
   constructor() {
     this.expressApp = express();
+    this.init()
     this.mountMiddlewares();
     this.mountRoutes();
     this.mountErros();
   }
+
+  init(){
+    multer();
+  }
+
   mountRoutes() {
     this.expressApp.use("/users", routerUser);
-    this.expressApp.use("/drivers", routerDriver);
+    this.expressApp.use("/drivers", AuthenticationGuard.canActivate, routerDriver);
     this.expressApp.use("/medics", routerMedic);
     this.expressApp.use("/roles", routerRole);
     this.expressApp.use("/auth", routerAuth);

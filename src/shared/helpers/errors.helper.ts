@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 export interface IError extends Error {
     status?: number;
+    code?:string;
 }
 
 export default class ErrorHandle {
@@ -37,7 +38,7 @@ export default class ErrorHandle {
                     error = new Error("Async error");
                     error.message = err.message;
                     error.stack = err.stack;
-                    error.status = err.status;
+                    error.status = err.status ?? 501;
                 }
 
                 next(error);

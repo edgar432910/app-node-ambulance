@@ -14,7 +14,7 @@ export default class UserController {
 
     async list(req: Request, res: Response) {
         const result = await this.useCase.list({}, [], {
-            lastname2: 'ASC',
+            lastname: 'ASC',
             name:'ASC'
         })
         // const result = await functionReject();
@@ -40,9 +40,8 @@ export default class UserController {
             lastname:body.lastname,
             email:body.email,
             password:body.password,
-            refreshToken:'sdfsdfsadf',
-            roles:body.roles
-
+            roles:body.roles,
+            photo:body.photo
         }
         const result = await this.useCase.insert(user)
         res.json(result);

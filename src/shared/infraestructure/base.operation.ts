@@ -1,7 +1,7 @@
 import { DatabaseBootstrap } from "@bootstrap/database.boostrap";
 import Result from "@shared/application/result.interface";
 import { DataSource, ObjectType, Repository } from "typeorm";
-import { ResponseDto } from "./response.dto";
+import { ResponseDto } from "../application/response.dto";
 import * as _ from "lodash";
 
 export class BaseOperation<T> {
@@ -39,10 +39,13 @@ export class BaseOperation<T> {
 
   async update(entity: Partial<T>, where: object = {}, relations: string[] = []): Promise<Result<T>> {
     const repository: Repository<T> = DatabaseBootstrap.dataSource.getRepository(this.entity);
-    let recordToUpdate: any = await repository.findOne({ where, relations });
-    recordToUpdate = _.merge(recordToUpdate, entity);
-    await repository.save(recordToUpdate);
-    return ResponseDto.format('', recordToUpdate);
+    let recordsToUpdate: any[] = await repository.find({ where, relations });
+
+    recordsToUpdate = recordsToUpdate.map((record: any) =>
+      _.merge(record, entity)
+    );
+    await repository.save(recordsToUpdate);
+    return ResponseDto.format('', recordsToUpdate);
 
   }
   async delete(where: object): Promise<Result<T>> {
