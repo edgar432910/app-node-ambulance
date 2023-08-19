@@ -10,35 +10,37 @@ export class UploadMiddleware{
     static S3(
         fieldName:string, 
         maxFileSize:number=2000000,
+        directory:string = '',
         ispublic:boolean = false, 
         ...mimeTypesAllowed:string[]){
+        console.log("upload");
+        console.log({fieldName});
         return multer(
         {limits:{fileSize:maxFileSize},
          storage:multer_s3({
             s3: new S3Client({}),
             bucket: env.S3.bucketName,
-            acl: ispublic ? "public-read":"private",
+            acl: ispublic ? "public-read":"",
             metadata(req,file,cb){
                 cb(null,{fiedName:file.fieldname})
             },
-            key:function(req:Request,file,cb){
+            key:(req:Request,file,cb)=>{
                 const mimeType = file.mimetype
                 const isFileAllowed = mimeTypesAllowed.includes(mimeType)
                 if(!isFileAllowed){
-                    // const error:IError = new Error("File type not allowed")
-                    // error.code = `LIMIT_FILE_TYPES`;
-                    // error.status = 422
-                    // return cb(error,null)
-                    return cb(new Error('File type not allowed'), null);
+                    const error: IError = new Error("File type not allowed");
+                    // error.status = 422;
+                    return cb(error, null);
+                    // return cb(new Error('File type not allowed'), null);
                 }
                 const partsFile = file.originalname.split('.') // name.extension
                 const newName = Date.now().toString()
                 const extension = partsFile[partsFile.length-1]
-                const newFileName = `${newName}.${extension}`
+                const newFileName = `${directory}/${newName}.${extension}`
                 req.body[fieldName] = newFileName;
                 cb(null, newFileName)
-            }
-        })
-    }).single(fieldName)
+            },
+        }),
+         }).single(fieldName)
     }
 }

@@ -12,35 +12,29 @@ export default class ErrorHandle {
         next(error);
     }
     static generic(error: IError, req: Request, res: Response, next: NextFunction) {
+        console.log(error)
         const objError: IError = {
             name: error.name,
-            status: error.status,
+            status: error.status ?? 500,
             message: error.message
         };
         if (process.env.NODE_ENV !== 'production') {
             objError.stack = error.stack;
         }
         // res.status(error.status).send(error.message)
-        res.status(error.status).json(objError);
+        res.status(error.status ? error.status : 500).json(objError);
 
     }
     static catchError(ftn: (req: Request, res: Response, next: NextFunction) => Promise<any>) {
         return (req: Request, res: Response, next: NextFunction) => {
             return ftn(req, res, next).catch((err) => {
-                let error: IError
-                if (err && !err.code) {
-                    error = new Error("Database error");
-                    error.name = 'Database error';
-                    error.message = err.message;
-                    error.stack = err.message;
-                    error.status = 500;
-                } else {
-                    error = new Error("Async error");
-                    error.message = err.message;
-                    error.stack = err.stack;
-                    error.status = err.status ?? 501;
-                }
-
+                console.log('into ',err)
+                const error: IError = new Error('Async error');
+                error.name = err.status ? 'Async error' : 'Database error';
+                error.message = err.message;
+                error.stack = err.stack;
+                error.status = err.status ? err.status : 503;
+        
                 next(error);
             })
         };

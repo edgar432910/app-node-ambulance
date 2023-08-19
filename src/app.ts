@@ -20,7 +20,11 @@ class App {
   }
 
   init(){
-    multer();
+    multer({
+      limits: {
+        fileSize: 8000000,
+      },
+    });
   }
 
   mountRoutes() {

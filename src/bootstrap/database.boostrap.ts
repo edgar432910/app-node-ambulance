@@ -1,7 +1,6 @@
 import IBootstrap from "./bootstrap.interface";
 import yenv from "yenv";
 import { DataSource } from 'typeorm';
-import { AppDataSource } from '../../../proyect_typeorm/src/data-source';
 const env = yenv();
 
 export class DatabaseBootstrap implements IBootstrap {

@@ -34,6 +34,7 @@ export default class UserController {
         res.json(result);
     }
     async insert(req: Request, res: Response) {
+        console.log('Inserting')
         const body = req.body;
         const user: Partial< UserModel> = {
             name: body.name,

@@ -7,6 +7,7 @@ import RoleRepository from "@role/application/role.repository";
 import { RoleModel } from "@role/domain/role.model";
 import { FamilyRefreshTokens } from "@entities/family-refresh-tokens.entity";
 import { FamilyRefreshTokensModel } from "src/family-refreshtokens/domain/family-refreshtokens.model";
+import { UserListDto } from "@user/domain/user-list.dto";
 
 
 
@@ -16,6 +17,11 @@ export default class UserUseCase extends BaseUseCase<UserModel, UserRepository>{
     ) {
         super(repository);
     }
+    override async list(where: object = {}, relations: string[] = [], order: object = {}): Promise<Result<UserModel>> {
+        where = { ...where, active: true };
+        const list  = await this.repository.list(where, relations, order);
+        return UserListDto.mapping(list);
+      }
 
     override async insert(entity: Partial<UserModel>): Promise<Result<UserModel>> {
         const user: UserModel = {

@@ -22,7 +22,7 @@ route.get('/', AuthenticationGuard.canActivate, AuthorizationGuard.canActivate("
 route.get('/:id', ErrorHandle.catchError(controller.getOne.bind(controller)))
 route.get('/page/:page', ErrorHandle.catchError(controller.getPage.bind(controller)))
 route.post('/',
-    UploadMiddleware.S3("photo", 4000000, true, "image/png", "image/jpeg"),
+    UploadMiddleware.S3("photo", 4000000,'users/photos', true, "image/png", "image/jpeg"),
     ErrorHandle.catchError(controller.insert.bind(controller)))
 route.put('/:id', ErrorHandle.catchError(controller.update.bind(controller)))
 route.delete('/:id', controller.delete.bind(controller))
