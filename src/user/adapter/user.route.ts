@@ -20,9 +20,10 @@ const route = express.Router()
 route.get('/', AuthenticationGuard.canActivate, AuthorizationGuard.canActivate("LIST_USER"), ErrorHandle.catchError(controller.list.bind(controller)))
 
 route.get('/:id', ErrorHandle.catchError(controller.getOne.bind(controller)))
+route.get('/photo/:id', ErrorHandle.catchError(controller.getPhoto.bind(controller)))
 route.get('/page/:page', ErrorHandle.catchError(controller.getPage.bind(controller)))
 route.post('/',
-    UploadMiddleware.S3("photo", 4000000,'users/photos', true, "image/png", "image/jpeg"),
+    UploadMiddleware.S3("photo", 4000000,'users/photos', false, "image/png", "image/jpeg"),
     ErrorHandle.catchError(controller.insert.bind(controller)))
 route.put('/:id', ErrorHandle.catchError(controller.update.bind(controller)))
 route.delete('/:id', controller.delete.bind(controller))

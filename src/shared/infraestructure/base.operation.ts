@@ -5,9 +5,9 @@ import { ResponseDto } from "../application/response.dto";
 import * as _ from "lodash";
 
 export class BaseOperation<T> {
-  private static appDataSource: DataSource;
+  protected static appDataSource: DataSource;
 
-  constructor(private entity: ObjectType<T>) {
+  constructor(protected entity: ObjectType<T>) {
   }
   async list(where: object = {}, relations: string[] = [], order: object = {}): Promise<Result<T>> {
     const repository: Repository<T> = DatabaseBootstrap.dataSource.getRepository(this.entity);

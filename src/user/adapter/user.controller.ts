@@ -25,6 +25,13 @@ export default class UserController {
         const result = await this.useCase.getOne(where)
         res.json(result);
     }
+    async getPhoto(req: Request, res: Response) {
+        const where = { id: +req.params.id }
+        const result = await this.useCase.getPhoto(where);
+        const obj= Buffer.from(result.Body).toString("utf-8");
+        
+        res.type("image/png").send(obj);
+    }
     async getPage(req: Request, res: Response) {
         const page = +req.params.page;
         const result = await this.useCase.getPage(page, {}, [], {
