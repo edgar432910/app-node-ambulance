@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node inicio.js",
-    "dev": "nodemon src/index.ts"
+    "clean":"rm -rf dist && rm -rf cache",
+    "begin": "node inicio.js",
+    "dev": "nodemon src/index.ts",
+    "build": "npm run clean && tsc && gulp minify",
+    "server": "cross-env NODE_ENV=production node dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +16,7 @@
   "dependencies": {
     "aws-sdk": "^2.1401.0",
     "bcryptjs": "^2.4.3",
+    "cross-env": "^7.0.3",
     "date-fns": "^2.29.3",
     "express": "^4.18.2",
     "ioredis": "^5.3.2",
@@ -34,7 +38,15 @@
     "@types/multer": "^1.4.7",
     "@types/multer-s3": "^3.0.0",
     "@types/uuid": "^9.0.1",
+    "gulp": "^4.0.2",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-ts-alias": "^2.0.0",
+    "gulp-ts-alias-plus": "^1.1.0",
+    "gulp-ts-paths": "^0.5.2",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-uglify-es": "^3.0.0",
     "nodemon": "^2.0.20",
+    "path-alias-resolver": "^1.0.3-alpha",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^4.9.5"

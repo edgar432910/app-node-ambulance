@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.ResponseDto=void 0;class ResponseDto{static format(e,t,o=null){return o||0==o?{trace:e,payload:{data:t,total:o}}:{trace:e,payload:{data:t}}}}exports.ResponseDto=ResponseDto;

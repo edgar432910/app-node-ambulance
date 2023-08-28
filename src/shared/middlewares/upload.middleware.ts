@@ -2,45 +2,110 @@ import multer from "multer"
 import multer_s3 from "multer-s3"
 import yenv from "yenv"
 import { IError } from "@shared/helpers/errors.helper"
-import { Request } from "express"
+import { NextFunction, Request, Response } from "express"
 import { S3Client } from "@aws-sdk/client-s3"
+import { UploadOptions } from "@shared/application/upload-builder"
+import { ParamsDictionary } from "express-serve-static-core"
+import { ParsedQs } from "qs"
 
-const env = yenv()
-export class UploadMiddleware{
-    static S3(
-        fieldName:string, 
-        maxFileSize:number=2000000,
-        directory:string = '',
-        ispublic:boolean = false, 
-        ...mimeTypesAllowed:string[]){
-        console.log("upload");
-        console.log({fieldName});
+const env = yenv();
+export type OptionsUploadType = UploadOptions | any;
+
+export interface IUploadImage{
+    save(options:OptionsUploadType): any;
+}
+export interface IUploadMultiple{
+    saveMultiple(options:OptionsUploadType): any;
+}
+
+
+export class FactoryAWS implements IUploadImage,IUploadMultiple {
+    saveMultiple(options: OptionsUploadType) {
         return multer(
-        {limits:{fileSize:maxFileSize},
+            {limits:{fileSize:options.maxFileSize},
+             storage:multer_s3({
+                s3: new S3Client({}),
+                bucket: env.S3.bucketName,
+                acl: options.isPublic ? "public-read":"",
+                metadata(req,file,cb){
+                    cb(null,{fiedName:file.fieldname})
+                },
+                key:(req:Request,file,cb)=>{
+                    const mimeType = file.mimetype
+                    const isFileAllowed = options.mimeTypesAllowed.includes(mimeType)
+                    const fileSize = file.size;
+                    if(fileSize > options.maxFileSize){
+                        const error: IError = new Error("File too large");
+                        error.status = 422;
+                        return cb(error, null);
+                    }
+                    if(!isFileAllowed){
+                        const error: IError = new Error("File type not allowed");
+                        error.code = "LIMIT_FILE_TYPES";
+                        error.status = 422;
+                        return cb(error, null);
+                        // return cb(new Error('File type not allowed'), null);
+                    }
+                    const partsFile = file.originalname.split('.') // name.extension
+                    const newName = Date.now().toString()
+                    const extension = partsFile[partsFile.length-1]
+                    const newFileName = `${options.directory}/${newName}.${extension}`
+                    req.body[options.fieldName] = newFileName;
+                    cb(null, newFileName)
+                },
+            }),
+             }).single(options.fieldName)
+    }
+    save(options: OptionsUploadType)  {
+        return multer(
+        {limits:{fileSize:options.maxFileSize},
          storage:multer_s3({
             s3: new S3Client({}),
             bucket: env.S3.bucketName,
-            acl: ispublic ? "public-read":"",
+            acl: options.isPublic ? "public-read":"",
             metadata(req,file,cb){
                 cb(null,{fiedName:file.fieldname})
             },
             key:(req:Request,file,cb)=>{
                 const mimeType = file.mimetype
-                const isFileAllowed = mimeTypesAllowed.includes(mimeType)
+                const isFileAllowed = options.mimeTypesAllowed.includes(mimeType)
+                const fileSize = file.size;
+                if(fileSize > options.maxFileSize){
+                    const error: IError = new Error("File too large");
+                    error.status = 422;
+                    return cb(error, null);
+                }
                 if(!isFileAllowed){
                     const error: IError = new Error("File type not allowed");
-                    // error.status = 422;
+                    error.code = "LIMIT_FILE_TYPES";
+                    error.status = 422;
                     return cb(error, null);
                     // return cb(new Error('File type not allowed'), null);
                 }
                 const partsFile = file.originalname.split('.') // name.extension
                 const newName = Date.now().toString()
                 const extension = partsFile[partsFile.length-1]
-                const newFileName = `${directory}/${newName}.${extension}`
-                req.body[fieldName] = newFileName;
+                const newFileName = `${options.directory}/${newName}.${extension}`
+                req.body[options.fieldName] = newFileName;
                 cb(null, newFileName)
             },
         }),
-         }).single(fieldName)
+         }).single(options.fieldName)
+         //      // array(options.fieldnames)
+    //      // fields(["photo", "cv"])
     }
+    
+}
+
+export class FactoryGoogle implements IUploadImage {
+    save(options: OptionsUploadType)  {
+      return false;
+    }
+    
+}
+export class FactoryAzure implements IUploadImage {
+    save(options: OptionsUploadType)  {
+      return false;
+    }
+    
 }

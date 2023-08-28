@@ -1,0 +1,24 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const medic_usecase_1 = __importDefault(require("@medic/application/medic.usecase"));
+const medic_operation_1 = __importDefault(require("@medic/infraestructure/medic.operation"));
+const express_1 = __importDefault(require("express"));
+const medic_controller_1 = __importDefault(require("./medic.controller"));
+const cache_middleware_1 = __importDefault(require("@shared/middlewares/cache.middleware"));
+const operation = new medic_operation_1.default();
+const useCase = new medic_usecase_1.default(operation);
+const controller = new medic_controller_1.default(useCase);
+const route = express_1.default.Router();
+route.get('/', cache_middleware_1.default.handle('MEDIC_LIST'), controller.list.bind(controller));
+route.get('/unique', controller.getUniqueMedic.bind(controller));
+route.get('/report', controller.getReportMedic.bind(controller));
+route.get('/:id', controller.getOne.bind(controller));
+route.get('/page/:page', controller.getPage.bind(controller));
+route.post('/', controller.insert.bind(controller));
+route.get('/page/:page', controller.getPage.bind(controller));
+route.put('/:id', controller.update.bind(controller));
+route.delete('/:id', controller.delete.bind(controller));
+exports.default = route;

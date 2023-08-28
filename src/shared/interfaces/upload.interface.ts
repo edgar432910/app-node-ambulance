@@ -4,5 +4,5 @@ export interface IUpload{
     maxFileSize: number;
     directory: string;
     isPublic: boolean;
-    mimeTypeAllowed: string[];
+    mimeTypesAllowed: string[];
 }

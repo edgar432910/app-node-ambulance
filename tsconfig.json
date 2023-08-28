@@ -1,5 +1,4 @@
 {
-  "extends": "./tsconfig.paths.json",
   "compilerOptions": {
     "module": "commonjs",
     "esModuleInterop": true,
@@ -11,7 +10,19 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "baseUrl": "./",
-    "outDir": "./cache"
+    "outDir": "./cache",
+    "paths": {
+      "@bootstrap/*": ["src/bootstrap/*"],
+      "@user/*": ["src/user/*"],
+      "@role/*": ["src/role/*"],
+      "@medic/*": ["src/medic/*"],
+      "@driver/*": ["src/driver/*"],
+      "@history/*": ["src/history/*"],
+      "@family-refreshtokens/*": ["src/family-refreshtokens/*"],
+      "@shared/*": ["src/shared/*"],
+      "@entities/*": ["src/entities/*"],
+      "@auth/*": ["src/auth/*"],
+    }
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*.ts"],

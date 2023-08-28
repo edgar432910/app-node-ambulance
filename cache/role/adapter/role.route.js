@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const role_usecase_1 = __importDefault(require("@role/application/role.usecase"));
+const express_1 = __importDefault(require("express"));
+const role_operations_1 = __importDefault(require("@role/infraestructure/role.operations"));
+const role_controller_1 = __importDefault(require("./role.controller"));
+const operation = new role_operations_1.default();
+const useCase = new role_usecase_1.default(operation);
+const controller = new role_controller_1.default(useCase);
+const route = express_1.default.Router();
+route.get('/', controller.list.bind(controller));
+route.get('/:id', controller.getOne.bind(controller));
+route.get('/page/:page', controller.getPage.bind(controller));
+route.post('/', controller.insert.bind(controller));
+route.put('/:id', controller.update.bind(controller));
+route.delete('/:id', controller.delete.bind(controller));
+exports.default = route;
