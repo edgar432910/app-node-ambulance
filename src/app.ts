@@ -6,8 +6,14 @@ import routerRole from "@role/adapter/role.route";
 import routerAuth from "@auth/adapter/auth.route";
 import ErrorHandle from "@shared/helpers/errors.helper";
 import { Application } from "express";
-import multer from "multer"
+import multer from "multer";
+import helmet from "helmet";
+import permission_policy from 'permissions-policy';
 import { AuthenticationGuard } from "@shared/guards/authentication.guard";
+import yenv from "yenv";
+
+const env = yenv();
+const domain = env.DOMAIN;
 
 class App {
   expressApp: Application;
@@ -26,6 +32,24 @@ class App {
       },
     });
   }
+  mountMiddlewares() {
+    this.expressApp.use(helmet());
+    // limitar los permisos, los accesos
+    this.expressApp.use(
+      permission_policy({
+        features: {
+          geolocation: ['self', `"${domain}"`],
+          camera: ['self', `"${domain}"`],
+          microphone: ['self', `"${domain}"`],
+          notifications: ['self', `"${domain}"`],
+          push: ['self', `"${domain}"`],
+        },
+      })
+    );
+    this.expressApp.use(express.urlencoded({ extended: true }));
+    // middleware se llama json, se le asign a requestbody
+    this.expressApp.use(express.json());
+  }
 
   mountRoutes() {
     this.expressApp.use("/users", routerUser);
@@ -40,10 +64,6 @@ class App {
     this.expressApp.use(ErrorHandle.notFound);
     this.expressApp.use(ErrorHandle.generic);
   }
-  mountMiddlewares() {
-    this.expressApp.use(express.urlencoded({ extended: true }));
-    // middleware se llama json, se le asign a requestbody
-    this.expressApp.use(express.json());
-  }
+
 }
 export default new App().expressApp;

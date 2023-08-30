@@ -31,7 +31,7 @@ route.post('/',
             .addFieldName('photo')
             .addMaxFileSize(100000000)
             .addDirectory('users/photos')
-            .addIsPublic(false)
+            .addIsPublic(true)
             .addMimeTypesAllowed(["image/png", "image/jpeg"])
             .build()
         // {fieldName:"photo", maxFileSize:4000000, directory:"users/photos",
