@@ -11,6 +11,7 @@ import helmet from "helmet";
 import permission_policy from 'permissions-policy';
 import { AuthenticationGuard } from "@shared/guards/authentication.guard";
 import yenv from "yenv";
+import {Request, Response} from "express";
 
 const env = yenv();
 const domain = env.DOMAIN;
@@ -52,7 +53,7 @@ class App {
   }
 
   mountRoutes() {
-    this.expressApp.get('/', (req, res) => res.send("TODOOk"));
+    this.expressApp.get('/', (req:Request, res:Response) => res.send("CODIGO COMPLETO before to test"));
     this.expressApp.use("/users", routerUser);
     this.expressApp.use("/drivers", AuthenticationGuard.canActivate, routerDriver);
     this.expressApp.use("/medics", routerMedic);
