@@ -52,6 +52,7 @@ class App {
   }
 
   mountRoutes() {
+    this.expressApp.get('/', (req, res) => res.send("TODOOk"));
     this.expressApp.use("/users", routerUser);
     this.expressApp.use("/drivers", AuthenticationGuard.canActivate, routerDriver);
     this.expressApp.use("/medics", routerMedic);
