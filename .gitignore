@@ -1,2 +1,5 @@
 # Node
 /node_modules
+cache
+dist
+env*.yaml
