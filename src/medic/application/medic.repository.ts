@@ -1,6 +1,6 @@
-import { MedicModel } from "@medic/domain/medic.model";
-import { BaseRepository } from "@shared/application/base.repository";
-import Result from "@shared/application/result.interface";
+import { MedicModel } from "../domain/medic.model";
+import { BaseRepository } from "../../shared/application/base.repository";
+import Result from "../../shared/application/result.interface";
 
 export default interface MedicRepository extends BaseRepository<MedicModel>{
 

@@ -1,16 +1,17 @@
 
 
-import MedicUseCase from '@medic/application/medic.usecase'
-import MedicOperation from '@medic/infraestructure/medic.operation'
+import MedicUseCase from '../application/medic.usecase'
+import MedicOperation from '../infraestructure/medic.operation'
 import express from 'express'
 import MedicController from './medic.controller'
-import CacheRedis from '@shared/middlewares/cache.middleware'
-import { Validators } from '@shared/middlewares/validate.middleware'
+import CacheRedis from '../../shared/middlewares/cache.middleware'
+import { Validators } from '../../shared/middlewares/validate.middleware'
 import { schemas } from './medic.schema'
+import RedisBootstrap from '../../bootstrap/redis.boostrap'
 
 const operation = new MedicOperation()
 const useCase = new MedicUseCase(operation)
-const controller = new MedicController(useCase)
+const controller = new MedicController(useCase, RedisBootstrap)
 
 const route = express.Router()
 route.get('/', CacheRedis.handle('MEDIC_LIST'),controller.list.bind(controller))

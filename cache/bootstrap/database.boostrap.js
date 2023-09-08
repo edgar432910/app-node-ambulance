@@ -16,7 +16,7 @@ class DatabaseBootstrap {
             password: env.DATABASES.MYSQL.PASSWORD,
             database: env.DATABASES.MYSQL.DATABASE,
             port: env.DATABASES.MYSQL.PORT,
-            entities: [env.DATABASES.MYSQL.ENTITIES],
+            entities: env.DATABASES.MYSQL.ENTITIES,
             synchronize: env.DATABASES.MYSQL.SYNCHRONIZE,
             logging: env.DATABASES.MYSQL.LOGGIN,
         };

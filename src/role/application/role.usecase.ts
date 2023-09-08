@@ -1,6 +1,6 @@
-import { RoleModel } from "@role/domain/role.model";
+import { RoleModel } from "../domain/role.model";
 import RoleRepository from "./role.repository";
-import { BaseUseCase } from "@shared/application/base.usecase";
+import { BaseUseCase } from "../../shared/application/base.usecase";
 
 
 

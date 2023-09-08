@@ -1,14 +1,12 @@
-import { TokensModel } from "@auth/domain/tokens.model";
-import Result from "@shared/application/result.interface";
-import { UserModel } from "@user/domain/user.model";
-import { AuthRepository } from "./auth.repository";
-import UserRepository from "@user/application/user.repository";
-import { UserService } from "@user/application/user.service";
-import { ResponseDto } from "@shared/application/response.dto";
-import { compareAsc, add } from "date-fns";
-import { FamilyRefreshTokens } from "@entities/family-refresh-tokens.entity";
-import FamilyRefreshTokensRepository from "@family-refreshtokens/application/family-refreshtokens.repository";
-import { FamilyRefreshTokensModel } from "@family-refreshtokens/domain/family-refreshtokens.model";
+import { TokensModel } from "../domain/tokens.model";
+import Result from "../../shared/application/result.interface";
+import { UserModel } from "../../user/domain/user.model";
+import UserRepository from "../../user/application/user.repository";
+import { UserService } from "../../user/application/user.service";
+import { ResponseDto } from "../../shared/application/response.dto";
+import { FamilyRefreshTokens } from "../../entities/family-refresh-tokens.entity";
+import FamilyRefreshTokensRepository from "../../family-refreshtokens/application/family-refreshtokens.repository";
+import { FamilyRefreshTokensModel } from "../../family-refreshtokens/domain/family-refreshtokens.model";
 export class AuthUseCase {
     constructor(private repository: UserRepository, private repositoryFamilyRefreshTokens: FamilyRefreshTokensRepository) {
 

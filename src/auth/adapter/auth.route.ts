@@ -2,9 +2,9 @@
 
 import express from 'express'
 import AuthController from './auth.controller'
-import UserOperation from '@user/infraestructure/user.operation'
-import { AuthUseCase } from '@auth/application/auth.usecase'
-import FamilyRefreshTokensOperation from '@family-refreshtokens/infraestructure/family-refreshtokens.operation'
+import UserOperation from '../../user/infraestructure/user.operation'
+import { AuthUseCase } from '../application/auth.usecase'
+import FamilyRefreshTokensOperation from '../../family-refreshtokens/infraestructure/family-refreshtokens.operation'
 
 const operation = new UserOperation()
 const operationFamilyResfreshTokens = new FamilyRefreshTokensOperation()

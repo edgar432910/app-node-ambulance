@@ -1,17 +1,15 @@
 
 
-import UserUseCase from '@user/application/user.usecase'
-import express, { NextFunction, Request, Response } from 'express'
+import UserUseCase from '../../user/application/user.usecase'
+import express from 'express'
 import UserController from './user.controller'
-import UserOperation from '@user/infraestructure/user.operation'
-import RoleOperation from '@role/infraestructure/role.operations'
-import { AuthenticationGuard } from '@shared/guards/authentication.guard'
-import { AuthorizationGuard } from '@shared/guards/authorization.guard'
-import ErrorHandle, { IError } from '@shared/helpers/errors.helper'
-// import { UploadMiddleware } from '@shared/middlewares/upload.middleware'
-import { IUpload } from '@shared/interfaces/upload.interface'
-import { UploadBuilder } from '@shared/application/upload-builder'
-import { FactoryAWS, IUploadImage, IUploadMultiple } from '@shared/middlewares/upload.middleware'
+import UserOperation from '../../user/infraestructure/user.operation'
+import RoleOperation from '../../role/infraestructure/role.operations'
+import { AuthenticationGuard } from '../../shared/guards/authentication.guard'
+import { AuthorizationGuard } from '../../shared/guards/authorization.guard'
+import ErrorHandle, { IError } from '../../shared/helpers/errors.helper'
+import { UploadBuilder } from '../../shared/application/upload-builder'
+import { FactoryAWS, IUploadImage, IUploadMultiple } from '../../shared/middlewares/upload.middleware'
 
 const operation = new UserOperation()
 const operationRole = new RoleOperation()

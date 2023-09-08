@@ -1,6 +1,6 @@
-import { IError } from "@shared/helpers/errors.helper";
-import UserUseCase from "@user/application/user.usecase";
-import { UserModel } from "@user/domain/user.model";
+import { IError } from "../../shared/helpers/errors.helper";
+import UserUseCase from "../../user/application/user.usecase";
+import { UserModel } from "../../user/domain/user.model";
 import { Request, Response } from "express";
 
 const functionReject = ()=> new Promise((resolve, reject) => {

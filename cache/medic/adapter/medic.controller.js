@@ -1,12 +1,9 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const redis_boostrap_1 = __importDefault(require("@bootstrap/redis.boostrap"));
 class MedicController {
-    constructor(useCase) {
+    constructor(useCase, cache) {
         this.useCase = useCase;
+        this.cache = cache;
     }
     async list(req, res) {
         const result = await this.useCase.list({}, [], {
@@ -14,7 +11,7 @@ class MedicController {
             maternal_surname: 'ASC',
             name: 'ASC',
         });
-        redis_boostrap_1.default.set(res.locals.cacheKey, JSON.stringify(result));
+        this.cache.set(res.locals.cacheKey, JSON.stringify(result));
         res.json(result);
     }
     async getOne(req, res) {
@@ -42,7 +39,7 @@ class MedicController {
             typeDocument: body.typeDocument
         };
         const result = await this.useCase.insert(medic);
-        await redis_boostrap_1.default.clear("MEDIC");
+        await this.cache.clear("MEDIC");
         res.json(result);
     }
     async update(req, res) {

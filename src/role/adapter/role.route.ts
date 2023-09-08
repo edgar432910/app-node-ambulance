@@ -1,8 +1,8 @@
 
 
-import RoleUseCase from '@role/application/role.usecase'
+import RoleUseCase from '../application/role.usecase'
 import express from 'express'
-import RoleOperation from '@role/infraestructure/role.operations'
+import RoleOperation from '../infraestructure/role.operations'
 import RoleController from './role.controller'
 
 const operation = new RoleOperation()

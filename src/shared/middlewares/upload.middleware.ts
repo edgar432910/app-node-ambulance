@@ -4,9 +4,7 @@ import yenv from "yenv"
 import { IError } from "@shared/helpers/errors.helper"
 import { NextFunction, Request, Response } from "express"
 import { S3Client } from "@aws-sdk/client-s3"
-import { UploadOptions } from "@shared/application/upload-builder"
-import { ParamsDictionary } from "express-serve-static-core"
-import { ParsedQs } from "qs"
+import { UploadOptions } from "../../shared/application/upload-builder"
 
 const env = yenv();
 export type OptionsUploadType = UploadOptions | any;

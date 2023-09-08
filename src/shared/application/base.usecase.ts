@@ -1,4 +1,3 @@
-import { ID } from "@shared/values/id.type";
 import { BaseRepository } from "./base.repository";
 import Result from "./result.interface";
 import yenv from "yenv";

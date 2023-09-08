@@ -1,10 +1,10 @@
-import { DatabaseBootstrap } from "@bootstrap/database.boostrap";
-import { Medic } from "@entities/medic.entity";
-import MedicRepository from "@medic/application/medic.repository";
-import { MedicModel } from "@medic/domain/medic.model";
-import Result from "@shared/application/result.interface";
-import { BaseOperation } from "@shared/infraestructure/base.operation";
-import { ResponseDto } from "@shared/application/response.dto";
+import { DatabaseBootstrap } from "../../bootstrap/database.boostrap";
+import { Medic } from "../../entities/medic.entity";
+import MedicRepository from "../application/medic.repository";
+import { MedicModel } from "../domain/medic.model";
+import Result from "../../shared/application/result.interface";
+import { BaseOperation } from "../../shared/infraestructure/base.operation";
+import { ResponseDto } from "../../shared/application/response.dto";
 import { Repository } from "typeorm";
 
 export default class MedicOperation extends BaseOperation<MedicModel> implements MedicRepository {

@@ -1,4 +1,3 @@
-import { ID } from "@shared/values/id.type";
 import Result from "./result.interface";
 
 export interface BaseRepository<T> {

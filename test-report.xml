@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/Users/ed/Documents/estudios/node_monolito/app-node-ambulance/test/integration/medic.route.spec.ts">
+    <testCase name="Medic.rout get /medics without token" duration="19"/>
+    <testCase name="Medic.rout get /medics with token" duration="6"/>
+    <testCase name="Medic.rout get /medics with token invalid" duration="3"/>
+  </file>
+</testExecutions>

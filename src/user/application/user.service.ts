@@ -2,10 +2,10 @@ import { v4 as uuidv4 } from 'uuid';
 import * as bcryptjs from "bcryptjs";
 import jwt from "jwt-simple";
 import { getUnixTime, add } from "date-fns"
-import { UserModel } from '@user/domain/user.model';
+import { UserModel } from '../domain/user.model';
 import yenv from 'yenv';
-import { TOKEN_ERROR, TOKEN_ERROR_MESSAGE } from '@shared/enum/token-error.enum';
-import { ResponseValidateToken } from '@shared/types/response-validate-token.type';
+import { TOKEN_ERROR, TOKEN_ERROR_MESSAGE } from '../../shared/enum/token-error.enum';
+import { ResponseValidateToken } from '../../shared/types/response-validate-token.type';
 const env = yenv();
 
 

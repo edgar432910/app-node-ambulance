@@ -1,5 +1,5 @@
-import { DatabaseBootstrap } from "@bootstrap/database.boostrap";
-import Result from "@shared/application/result.interface";
+import { DatabaseBootstrap } from "../../bootstrap/database.boostrap";
+import Result from "../../shared/application/result.interface";
 import { DataSource, ObjectType, Repository } from "typeorm";
 import { ResponseDto } from "../application/response.dto";
 import * as _ from "lodash";

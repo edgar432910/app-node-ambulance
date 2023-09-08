@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const base_usecase_1 = require("@shared/application/base.usecase");
+const base_usecase_1 = require("../../shared/application/base.usecase");
 class MedicUseCase extends base_usecase_1.BaseUseCase {
     constructor(repository) {
         super(repository);

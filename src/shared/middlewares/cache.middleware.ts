@@ -1,4 +1,4 @@
-import RedisBootstrap from "@bootstrap/redis.boostrap";
+import RedisBootstrap from "../../bootstrap/redis.boostrap";
 import { NextFunction, Request, Response } from "express";
 
 export default class CacheRedis{

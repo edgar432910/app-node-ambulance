@@ -1,15 +1,15 @@
 import express from "express";
-import routerUser from "@user/adapter/user.route";
-import routerDriver from "@driver/adapter/driver.route";
-import routerMedic from "@medic/adapter/medic.route";
-import routerRole from "@role/adapter/role.route";
-import routerAuth from "@auth/adapter/auth.route";
-import ErrorHandle from "@shared/helpers/errors.helper";
+import routerUser from "./user/adapter/user.route";
+import routerDriver from "./driver/adapter/driver.route";
+import routerMedic from "./medic/adapter/medic.route";
+import routerRole from "./role/adapter/role.route";
+import routerAuth from "./auth/adapter/auth.route";
+import ErrorHandle from "./shared/helpers/errors.helper";
 import { Application } from "express";
 import multer from "multer";
 import helmet from "helmet";
 import permission_policy from 'permissions-policy';
-import { AuthenticationGuard } from "@shared/guards/authentication.guard";
+import { AuthenticationGuard } from "./shared/guards/authentication.guard";
 import yenv from "yenv";
 import {Request, Response} from "express";
 
@@ -56,7 +56,7 @@ class App {
     this.expressApp.get('/', (req:Request, res:Response) => res.send("CODIGO COMPLETO before to test"));
     this.expressApp.use("/users", routerUser);
     this.expressApp.use("/drivers", AuthenticationGuard.canActivate, routerDriver);
-    this.expressApp.use("/medics", routerMedic);
+    this.expressApp.use("/medics",AuthenticationGuard.canActivate, routerMedic);
     this.expressApp.use("/roles", routerRole);
     this.expressApp.use("/auth", routerAuth);
 

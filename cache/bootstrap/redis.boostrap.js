@@ -38,7 +38,8 @@ class RedisBootstrap {
         return await client.get(Key);
     }
     static async set(key, value) {
-        await client.set(key, value, "PX", 24 * 60 * 60 * 1000);
+        if (client)
+            await client.set(key, value, "PX", 24 * 60 * 60 * 1000);
     }
     static async clear(prefix = "") {
         // const keys = await client.keys(`${prefix}*`);
