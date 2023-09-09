@@ -3,11 +3,20 @@ import RedisBootstrap from "../../bootstrap/redis.boostrap";
 import MedicUseCase from "../application/medic.usecase";
 import { MedicModel } from "../domain/medic.model";
 import { Request, Response } from "express";
+import logger from "../../shared/helpers/logging.helper";
+import { Trace } from "../../shared/helpers/trace.helper";
 
 export default class MedicController {
     constructor(private useCase: MedicUseCase, private cache:ICache) { }
 
     async list(req: Request, res: Response) {
+        logger.info({
+            typeElement: 'MedicController',
+            typeAction: 'list',
+            query: JSON.stringify({active:true, erased: 10}),
+            traceId:Trace.getTraceId(true),
+            message: 'Listing all medics'
+        })
         const result = await this.useCase.list({}, [], {
             paternal_surname: 'ASC',
             maternal_surname: 'ASC',

@@ -1,3 +1,5 @@
+import { Trace } from "../../shared/helpers/trace.helper";
+import logger from "../../shared/helpers/logging.helper";
 import { BaseRepository } from "./base.repository";
 import Result from "./result.interface";
 import yenv from "yenv";
@@ -8,6 +10,12 @@ export class BaseUseCase<T, U extends BaseRepository<T>> {
   constructor(public repository: U) { }
   list(where: object = {}, relations: string[] = [], order: object = {}): Promise<Result<T>> {
     where = { ...where, active: true }
+    logger.info({
+      typeElement: 'BaseUseCase',
+      typeAction: 'list',
+      traceId:Trace.getTraceId(),
+      message: 'Listing all'
+  })
     return this.repository.list(where, relations, order);
   }
   getOne(where: object = {}, relations: string[] = []): Promise<Result<T>> {

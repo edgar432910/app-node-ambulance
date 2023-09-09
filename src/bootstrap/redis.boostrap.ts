@@ -1,6 +1,7 @@
 import IBootstrap from "./bootstrap.interface";
 import yenv from "yenv";
 import IORedis from 'ioredis';
+import logger from "../shared/helpers/logging.helper";
 
 const env = yenv();
 let client: any;
@@ -20,7 +21,7 @@ export default class RedisBootstrap implements IBootstrap {
             };
             this.client = new IORedis(connectionParams);
             this.client.on("connect", () => {
-                console.log("Connected to Redis");
+                logger.info("Connected to Redis");
                 resolve(true)
             }).on("error", (error) => {
                 reject(error)

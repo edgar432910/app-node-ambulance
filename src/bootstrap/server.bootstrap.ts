@@ -2,9 +2,10 @@
 import app from "../app";
 import http from "http";
 import { Application } from "express";
-import IBootstrap from "@bootstrap/bootstrap.interface";
+import IBootstrap from "../bootstrap/bootstrap.interface";
 
 import yenv from "yenv";
+import logger from "../shared/helpers/logging.helper";
 const env = yenv();
 
 export default class ServerBootstrap implements IBootstrap {
@@ -15,7 +16,7 @@ export default class ServerBootstrap implements IBootstrap {
       server
         .listen(env.PORT)
         .on("listening", () => {
-          console.log(`SERVER IS LISTENING ON PORT ${env.PORT}`);
+          logger.info(`SERVER IS LISTENING ON PORT ${env.PORT}`);
           resolve("Server is ok");
         })
         .on("error", (error) => {
