@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/Users/ed/Documents/estudios/node_monolito/app-node-ambulance/test/integration/medic.route.spec.ts">
-    <testCase name="Medic.rout get /medics without token" duration="19"/>
-    <testCase name="Medic.rout get /medics with token" duration="6"/>
-    <testCase name="Medic.rout get /medics with token invalid" duration="3"/>
+  <file path="/Users/ed/Documents/estudios/node_monolito/app-node-ambulance/test/unit/medic.controller.spec.ts">
+    <testCase name="medic.controller list" duration="25"/>
+    <testCase name="medic.controller getOne" duration="0"/>
+    <testCase name="medic.controller getPage" duration="1"/>
+    <testCase name="medic.controller insert" duration="1"/>
+    <testCase name="medic.controller update" duration="4"/>
+    <testCase name="medic.controller delete" duration="0"/>
+  </file>
+  <file path="/Users/ed/Documents/estudios/node_monolito/app-node-ambulance/test/unit/medic.usecase.spec.ts">
+    <testCase name="medic.controller list" duration="24"/>
   </file>
 </testExecutions>

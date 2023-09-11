@@ -1,0 +1,1 @@
+/ 2tsX6hr&src/shared/application/base.usecase.ts

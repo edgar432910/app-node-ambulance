@@ -1,0 +1,3 @@
+Å
+xNode.js version 20 is not recommended, you might experience issues. Please use a recommended version of Node.js [16, 18]¿¥Ç≤®1§
+öMissing blame information for 61 files. This may lead to some features not working correctly. Please check the analysis logs and refer to <a href="https://docs.sonarqube.org/9.9/analyzing-source-code/scm-integration/" rel="noopener noreferrer" target="_blank">the documentation</a>.ñ˛Ç≤®1

@@ -1,0 +1,1 @@
+I 2tsXhrsrc/entities/base-personal.ts
