@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  master:
+    platform: linux/amd64
+    build: .
+    container_name: "master"
+    ports: 
+      - "8089:8089"
+    command: "--host http://docker-final-nodejs-env.eba-x4egbhvh.us-east-1.elasticbeanstalk.com --master" 
+  
+  slave:
+    platform: linux/amd64
+    build: .
+    command: "--host http://docker-final-nodejs-env.eba-x4egbhvh.us-east-1.elasticbeanstalk.com --slave --master-host=master" 
