@@ -1,2 +1,3 @@
-
-xNode.js version 20 is not recommended, you might experience issues. Please use a recommended version of Node.js [16, 18]αλƒ³¨1
+…
+|Node.js version 20 is not supported, you might experience issues. Please use a supported version of Node.js [10, 12, 14, 15]“Λ½΄¨1λ
+αMissing blame information for 1 file. This may lead to some features not working correctly. Please check the analysis logs and refer to <a href="/documentation/analysis/scm-integration/" target="_blank">the documentation</a>.μ“Ύ΄¨1

@@ -1,1 +1,1 @@
- 2tsXhrsrc/medic/domain/medic.model.ts
+ 2tsXhrsrc/medic/domain/medic.model.ts

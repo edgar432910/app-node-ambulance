@@ -1,1 +1,1 @@
- 2tsX	hr)src/medic/application/medic.repository.ts
+ 2tsX	hr)src/medic/application/medic.repository.ts

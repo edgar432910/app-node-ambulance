@@ -1,1 +1,1 @@
-% 2tsXhrsrc/user/domain/user.model.ts
+% 2tsXhrsrc/user/domain/user.model.ts

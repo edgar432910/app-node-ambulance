@@ -1,1 +1,1 @@
- 2tsXhrsrc/role/domain/role.model.ts
+ 2tsXhrsrc/role/domain/role.model.ts

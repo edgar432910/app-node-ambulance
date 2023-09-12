@@ -1,1 +1,1 @@
-( 2tsXOhr,src/shared/infraestructure/base.operation.ts
+( 2tsXOhr,src/shared/infraestructure/base.operation.ts

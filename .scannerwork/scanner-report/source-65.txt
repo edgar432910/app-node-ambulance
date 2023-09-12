@@ -15,9 +15,9 @@ import RedisBootstrap from '@bootstrap/redis.boostrap';
     //   redisBootstrap.initialize(),
     // ];
     // await Promise.all(listPromises);
-    await serverBootstrap.initialize(),
-      await databaseBoostrap.initialize(),
-      await redisBootstrap.initialize(),
+    await serverBootstrap.initialize();
+      await databaseBoostrap.initialize();
+      await redisBootstrap.initialize();
       console.log('Databases is running');
   } catch (err) {
     console.log(err);

@@ -5,13 +5,12 @@ import routerMedic from './medic/adapter/medic.route';
 import routerRole from './role/adapter/role.route';
 import routerAuth from './auth/adapter/auth.route';
 import ErrorHandle from './shared/helpers/errors.helper';
-import { Application } from 'express';
 import multer from 'multer';
 import helmet from 'helmet';
 import permission_policy from 'permissions-policy';
 import { AuthenticationGuard } from './shared/guards/authentication.guard';
 import yenv from 'yenv';
-import { Request, Response } from 'express';
+import { Request, Response, Application } from 'express';
 
 const env = yenv();
 const domain = env.DOMAIN;

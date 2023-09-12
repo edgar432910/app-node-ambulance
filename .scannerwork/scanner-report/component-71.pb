@@ -1,1 +1,1 @@
-G 2tsXhrsrc/entities/medic.entity.ts
+G 2tsXhrsrc/entities/medic.entity.ts

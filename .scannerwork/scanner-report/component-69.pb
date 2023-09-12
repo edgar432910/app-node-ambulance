@@ -1,1 +1,1 @@
-E 2tsXhr src/entities/paramedic.entity.ts
+E 2tsXhr src/entities/paramedic.entity.ts

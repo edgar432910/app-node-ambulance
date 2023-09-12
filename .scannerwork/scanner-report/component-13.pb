@@ -1,1 +1,1 @@
- 2tsXhrsrc/auth/adapter/auth.route.ts
+ 2tsXhrsrc/auth/adapter/auth.route.ts

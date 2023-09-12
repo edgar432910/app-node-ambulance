@@ -1,1 +1,1 @@
-. 2tsXhr)src/shared/application/base.repository.ts
+. 2tsXhr)src/shared/application/base.repository.ts

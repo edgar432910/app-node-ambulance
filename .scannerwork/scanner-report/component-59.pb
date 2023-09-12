@@ -1,1 +1,1 @@
-; 2tsXhr(src/shared/interfaces/cache.interface.ts
+; 2tsXhr(src/shared/interfaces/cache.interface.ts

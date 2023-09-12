@@ -1,1 +1,1 @@
-/ 2tsX6hr&src/shared/application/base.usecase.ts
+/ 2tsX6hr&src/shared/application/base.usecase.ts

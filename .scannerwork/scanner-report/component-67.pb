@@ -1,1 +1,1 @@
-C 2tsXhrsrc/entities/role.entity.ts
+C 2tsXhrsrc/entities/role.entity.ts

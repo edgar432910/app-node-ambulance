@@ -1,1 +1,1 @@
- 2tsXhrsrc/role/adapter/role.route.ts
+ 2tsXhrsrc/role/adapter/role.route.ts

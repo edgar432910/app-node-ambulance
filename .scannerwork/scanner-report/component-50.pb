@@ -1,1 +1,1 @@
-2 2tsXhr*src/shared/application/result.interface.ts
+2 2tsXhr*src/shared/application/result.interface.ts

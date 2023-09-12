@@ -1,1 +1,1 @@
- 2tsXhr$src/role/application/role.usecase.ts
+ 2tsXhr$src/role/application/role.usecase.ts

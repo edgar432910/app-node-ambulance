@@ -1,1 +1,1 @@
- 2tsXPhr%src/medic/adapter/medic.controller.ts
+ 2tsXPhr%src/medic/adapter/medic.controller.ts

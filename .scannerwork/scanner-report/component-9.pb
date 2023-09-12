@@ -1,1 +1,1 @@
-	 2tsXhr$src/bootstrap/bootstrap.interface.ts
+	 2tsXhr$src/bootstrap/bootstrap.interface.ts

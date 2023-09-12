@@ -1,1 +1,1 @@
- 2tsXhr&src/medic/application/medic.usecase.ts
+ 2tsXhr&src/medic/application/medic.usecase.ts

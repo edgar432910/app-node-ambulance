@@ -1,1 +1,1 @@
- 2tsX_hr$src/auth/application/auth.usecase.ts
+ 2tsX_hr$src/auth/application/auth.usecase.ts
